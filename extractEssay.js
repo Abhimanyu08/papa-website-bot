@@ -1,3 +1,7 @@
+import { slugify } from "./github.js";
+
+const baseUrl = "https://sarbjeet-dubey.blog";
+
 export function extractEssayDetails(text) {
 	// Initial basic implementation - you might want to adapt this
 	// based on how your father formats his messages
@@ -37,5 +41,8 @@ export function extractEssayDetails(text) {
 		title,
 		content,
 		date,
+		url: `${baseUrl}/posts/${
+			new Date(date).toISOString().split("T")[0]
+		}-${slugify(title)}`,
 	};
 }

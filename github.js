@@ -41,7 +41,7 @@ export class GitHubService {
 			console.log(`Blob created with SHA: ${blob.data.sha}`);
 
 			// Create tree
-			const filePath = `posts/${date}-${this.slugify(title)}.md`;
+			const filePath = `posts/${date}-${slugify(title)}.md`;
 			console.log(`Creating tree with file path: ${filePath}`);
 			const tree = await this.octokit.git.createTree({
 				owner: this.owner,
@@ -94,17 +94,17 @@ export class GitHubService {
 			throw error;
 		}
 	}
+}
 
-	slugify(text) {
-		try {
-			console.log(`Slugifying text: ${text}`);
-			const title = text.replace(/[\\/:*?"<>|]/g, "_").substring(0, 50);
-			const safeTitle = hi2en(title).replace(/ /g, "-");
-			console.log(`Slugified result: ${safeTitle}`);
-			return safeTitle;
-		} catch (error) {
-			console.error("Error in slugify function:", error);
-			throw error;
-		}
+export function slugify(text) {
+	try {
+		console.log(`Slugifying text: ${text}`);
+		const title = text.replace(/[\\/:*?"<>|]/g, "_").substring(0, 50);
+		const safeTitle = hi2en(title).replace(/ /g, "-");
+		console.log(`Slugified result: ${safeTitle}`);
+		return safeTitle;
+	} catch (error) {
+		console.error("Error in slugify function:", error);
+		throw error;
 	}
 }

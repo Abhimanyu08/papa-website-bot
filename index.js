@@ -17,6 +17,7 @@ bot.on("message", async (msg) => {
 			// Only send success message when essay is complete
 			if (result.status === "success") {
 				bot.sendMessage(msg.chat.id, result.message);
+				bot.sendMessage(msg.chat.id, result.url);
 			} else if (result.status === "incomplete") {
 				// Optionally send an acknowledgment for partial messages
 				// bot.sendMessage(msg.chat.id, result.message);
