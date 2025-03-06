@@ -1,10 +1,9 @@
 import { MessageBuffer } from "./messageBuffer.js";
 import { GitHubService } from "./github.js";
 import { extractEssayDetails } from "./extractEssay.js";
-import { NetlifyService } from "./netlify.js";
 
 const messageBuffer = new MessageBuffer();
-const netlify = new NetlifyService();
+// const netlify = new NetlifyService();
 
 export async function handleNewEssay(msg) {
 	const github = new GitHubService();
@@ -41,7 +40,7 @@ export async function handleNewEssay(msg) {
 			essayDetails.date
 		);
 
-		const deployResult = await netlify.waitForDeployment();
+		// const deployResult = await netlify.waitForDeployment();
 
 		if (deployResult.status === "success") {
 			return {
