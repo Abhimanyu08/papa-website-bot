@@ -41,7 +41,9 @@ export class GitHubService {
 			console.log(`Blob created with SHA: ${blob.data.sha}`);
 
 			// Create tree
-			const filePath = `posts/${date}-${slugify(title)}.md`;
+			const filePath = `posts/${
+				new Date(date).toISOString().split("T")[0]
+			}-${slugify(title)}.md`;
 			console.log(`Creating tree with file path: ${filePath}`);
 			const tree = await this.octokit.git.createTree({
 				owner: this.owner,
