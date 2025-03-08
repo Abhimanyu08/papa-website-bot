@@ -41,20 +41,11 @@ export async function handleNewEssay(msg) {
 		);
 
 		// const deployResult = await netlify.waitForDeployment();
-
-		if (deployResult.status === "success") {
-			return {
-				status: "success",
-				message: `Essay published successfully!\nYou can view it here`,
-				url: essayDetails.url,
-			};
-		} else {
-			return {
-				status: "partial_success",
-				message:
-					"Essay was saved but there was a delay in publishing. Please check the website in a few minutes.",
-			};
-		}
+		return {
+			status: "success",
+			message: `Essay published successfully!\nYou can view it here`,
+			url: essayDetails.url,
+		};
 	} catch (error) {
 		console.error("Error processing complete essay:", error);
 		throw error;
